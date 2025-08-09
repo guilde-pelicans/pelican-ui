@@ -81,6 +81,7 @@ function Emotes:Initialize()
         "CHAT_MSG_RAID", "CHAT_MSG_RAID_LEADER", "CHAT_MSG_WHISPER",
         "CHAT_MSG_WHISPER_INFORM", "CHAT_MSG_INSTANCE_CHAT",
         "CHAT_MSG_INSTANCE_CHAT_LEADER", "CHAT_MSG_SAY",
+        "CHAT_MSG_BN_WHISPER", "CHAT_MSG_BN_WHISPER_INFORM",
     }
     for _, event in ipairs(eventsToFilter) do
         ChatFrame_AddMessageEventFilter(event, emoteMessageFilter)
