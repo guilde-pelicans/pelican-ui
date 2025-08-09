@@ -1,0 +1,18 @@
+## Interface: 100200
+## Title: PelicanUI
+## Notes: Add-on pour la guilde Pélican
+## Author: Nek
+## Version: 1.0.0-beta1
+## SavedVariables: PelicanUI_Settings
+## IconTexture: Interface\AddOns\PelicanUI\Medias\icon.tga
+
+pelicanUI.lua
+configuration.lua
+Core\animations.lua
+menu.lua
+Modules\Pelimeme\animations.lua
+Modules\Pelimeme\pelimeme.lua
+Modules\Awards\awards.lua
+Modules\Emotes\emotes.lua
+Modules\SillyThings\ready-check.lua
+Modules\SillyThings\tooltips.lua

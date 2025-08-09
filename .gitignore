@@ -1,0 +1,6 @@
+./.idea/
+Medias/memes/*
+!Medias/memes/.gitkeep
+
+Medias/emotes/gogo-fuck.tga
+Medias/emotes/neph-lol.tga
