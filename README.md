@@ -15,7 +15,7 @@ Activer / Désactiver l'affichage des erreurs in-game :
 Créer un lien symbolique pour le dossier AddOns :
 
 Lancer commande en mode administrateur :  
-`mklink /D "C:\Program Files (x86)\World of Warcraft\_retail_\Interface\AddOns\pelicanUI" "F:\Documents\Workspace\wow-addon\pelicanUI"`
+`mklink /D "C:\Program Files (x86)\World of Warcraft\_retail_\Interface\AddOns\pelicanUI" "F:\Documents\Workspace\wow-addon\pelican-ui"`
 
 ## Informations pratiques
 

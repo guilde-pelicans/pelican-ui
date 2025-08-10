@@ -39,7 +39,7 @@ local function rcStartAnimation()
 
     local w, h = texture:GetSize()
     if not w or not h or w == 0 or h == 0 then
-        w, h = 450, 450
+        w, h = 350, 350
     end
 
     frame:SetSize(w, h)
@@ -91,7 +91,7 @@ local function rcGoAnimation()
     if not w or not h or w == 0 or h == 0 then
         w, h = frame:GetSize()
         if (not w or w == 0) or (not h or h == 0) then
-            w, h = 450, 450
+            w, h = 350, 350
         end
     end
     frame:SetSize(w, h)
