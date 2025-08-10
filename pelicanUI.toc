@@ -1,6 +1,6 @@
 ## Interface: 100200
 ## Title: PelicanUI
-## Notes: Add-on pour la guilde Pélican
+## Notes: Add-on pour la guilde Pélicans
 ## Author: Nek
 ## Version: 1.0.0-beta1
 ## SavedVariables: PelicanUI_Settings

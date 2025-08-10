@@ -5,6 +5,7 @@ PelicanUI_Awards = Awards
 local IMAGE_BASE_PATH = "Interface\\AddOns\\PelicanUI\\Medias\\awards\\"
 local SOUND_BASE_PATH = "Interface\\AddOns\\PelicanUI\\Medias\\sounds\\"
 local CUSTOM_FONT_PATH = "Interface\\AddOns\\pelicanUI\\Medias\\fonts\\Impacted20.ttf"
+local AWARD_DISPLAY_SIZE = 450
 
 -- Awards configurations
 local awards = {
@@ -78,14 +79,11 @@ function PelicanUI_Awards.displayAward(imagePath, sound, pseudo)
     local texture = frame:CreateTexture(nil, "BACKGROUND")
     texture:SetTexture(imagePath)
 
-    -- Automatically retrieve dimensions of the image
-    local width, height = texture:GetSize()
-    if not width or not height or width == 0 or height == 0 then
-        width, height = 450, 450
-    end
+    local width, height = AWARD_DISPLAY_SIZE, AWARD_DISPLAY_SIZE
 
     -- Configure frame size and position
     frame:SetSize(width, height)
+    frame:ClearAllPoints()
     frame:SetPoint("TOP", UIParent, "TOP", 0, height + 50)
     texture:SetAllPoints(frame)
 
