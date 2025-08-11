@@ -207,6 +207,11 @@ end
 -- Create context menu for players
 local function UpdateContextMenu(_, parent, data)
 
+    -- Afficher le menu uniquement si le joueur a les permissions (chef de groupe/raid ou assistant de raid)
+    if not hasPermissions() then
+        return
+    end
+
     local targetPlayer = data.name
     local submenu;
 

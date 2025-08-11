@@ -183,13 +183,15 @@ function ReadyCheck:Initialize()
             if everyoneAnswered and allReady then
                 rcGoAnimation()
             end
+
+            if everyoneAnswered and not allReady then
+                playSound("sad-noise.mp3")
+            end
         elseif event == "READY_CHECK_FINISHED" then
             -- If rc is over but someone is not ready (probably Gorim)
             if f and f:IsShown() and not (f._goAg and f._goAg:IsPlaying()) then
                 f:Hide()
             end
-
-            playSound("sad-noise.mp3")
         end
     end)
 end
