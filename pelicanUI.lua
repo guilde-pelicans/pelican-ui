@@ -23,11 +23,6 @@ mainFrame:SetScript("OnEvent", function(_, event)
             print("Module Pelimeme - actif")
         end
 
-        if PelicanUI_Settings.TooltipsEnabled then
-            PelicanUI_Tooltips:Initialize()
-            print("Module Tooltips - actif")
-        end
-
         if PelicanUI_Settings.ReadyCheckEnabled then
             PelicanUI_ReadyCheck:Initialize()
             print("Module ReadyCheck - actif")
