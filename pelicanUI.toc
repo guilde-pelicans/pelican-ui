@@ -6,9 +6,13 @@
 ## SavedVariables: PelicanUI_Settings
 ## IconTexture: Interface\AddOns\PelicanUI\Medias\icon.tga
 
+Libs\LibStub.lua
+Libs\CallbackHandler-1.0.lua
+Libs\LibDataBroker-1.1.lua
+Libs\LibDBIcon-1.0.lua
 pelicanUI.lua
 configuration.lua
-Core\animations.lua
+minimap.lua
 menu.lua
 Modules\Pelimeme\animations.lua
 Modules\Pelimeme\pelimeme.lua
