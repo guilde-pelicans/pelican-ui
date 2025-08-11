@@ -12,7 +12,7 @@ local awards = {
     ["aggro"] = { desc = "Gros boule", image = "gros-boule.png", sound = "sad-noise.mp3" },
     ["carpette"] = { desc = "Carpette", image = "carpette.png", sound = "sad-noise.mp3" },
     ["looter"] = { desc = "Looter", image = "looter.png", sound = "celebration.mp3" },
-    ["rageux"] = { desc = "Rageux", image = "rageux.png", sound = "sad-noise.mp3" },
+    ["rageux"] = { desc = "Rageux", image = "rageux.png", sound = "murloc.mp3" },
     ["slacker"] = { desc = "Slacker", image = "slacker.png", sound = "sad-noise.mp3" },
     ["carry"] = { desc = "Carry", image = "carry.png", sound = "celebration.mp3" },
 }
