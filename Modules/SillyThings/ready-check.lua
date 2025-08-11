@@ -188,6 +188,8 @@ function ReadyCheck:Initialize()
             if f and f:IsShown() and not (f._goAg and f._goAg:IsPlaying()) then
                 f:Hide()
             end
+
+            playSound("sad-noise.mp3")
         end
     end)
 end
