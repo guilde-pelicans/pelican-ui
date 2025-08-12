@@ -94,38 +94,11 @@ local emoteDesc = content:CreateFontString(nil, "ARTWORK", "GameFontHighlightSma
 emoteDesc:SetPoint("TOPLEFT", emoteHeader, "BOTTOMLEFT", 0, -6)
 emoteDesc:SetJustifyH("LEFT")
 emoteDesc:SetWidth(520)
-emoteDesc:SetText("Ce module permet l’affichage des emotes personnalisées de la guilde.\n")
-
--- "Liste des emotes" with info icon and tooltip (customizable)
-local emoteListLabel = content:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
-emoteListLabel:SetPoint("TOPLEFT", emoteDesc, "BOTTOMLEFT", 0, -2)
-emoteListLabel:SetText("Liste des emotes")
-
-local infoIcon = CreateFrame("Frame", nil, content)
-infoIcon:SetSize(12, 12)
-infoIcon:SetPoint("LEFT", emoteListLabel, "RIGHT", 6, 0)
-local infoTexture = infoIcon:CreateTexture(nil, "ARTWORK")
-infoTexture:SetAllPoints(true)
-infoTexture:SetTexture("Interface\\FriendsFrame\\InformationIcon")
-
--- Customize this multi-line tooltip text if desired
-local EMOTES_INFO_TOOLTIP = table.concat({
-    "Emotes standard :)  :(  :o  :D  <3 ",
-    "saucisse, +1, ok, lool, fuck, murloc, zzz, meh, caca",
-}, "\n")
-
-infoIcon:SetScript("OnEnter", function(self)
-    GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-    GameTooltip:SetText(EMOTES_INFO_TOOLTIP, 1, 1, 1, true)
-    GameTooltip:Show()
-end)
-infoIcon:SetScript("OnLeave", function()
-    GameTooltip:Hide()
-end)
+emoteDesc:SetText("Ce module permet l’affichage des emotes personnalisées de la guilde.\n|cffffff00/peli|r |cffffff00/pelimotes|r ou |cffffff00/emotes|r pour voir les emotes disponibles .\n")
 
 -- Checkbox to enable/disable the Emotes module
 local emotesCheckbox = CreateFrame("CheckButton", nil, content, "UICheckButtonTemplate")
-emotesCheckbox:SetPoint("TOPLEFT", emoteListLabel, "BOTTOMLEFT", 0, -8)
+emotesCheckbox:SetPoint("TOPLEFT", emoteDesc, "BOTTOMLEFT", 0, -12)
 emotesCheckbox.text = emotesCheckbox:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
 emotesCheckbox.text:SetPoint("LEFT", emotesCheckbox, "RIGHT", 4, 0)
 emotesCheckbox.text:SetText("Activer")

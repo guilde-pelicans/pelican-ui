@@ -10,7 +10,7 @@ local emotes = {
     [":D"] = { behaviour = "replace", image = "big-smile.tga" },
     [":)"] = { behaviour = "replace", image = "smile.tga" },
     [":("] = { behaviour = "replace", image = "frown.tga" },
-    [":o"] = { behaviour = "replace", image = "open-mouth.tga"},
+    [":o"] = { behaviour = "replace", image = "open-mouth.tga" },
     [";)"] = { behaviour = "replace", image = "wink.tga" },
     [":'("] = { behaviour = "replace", image = "cry.tga" },
     ["fuck"] = { behaviour = "after", image = "gogo-fuck.tga", wholeWord = true },
@@ -19,9 +19,9 @@ local emotes = {
     ["zzz"] = { behaviour = "replace", image = "zzz.tga", wholeWord = true },
     ["caca"] = { behaviour = "replace", image = "poop.tga" },
     ["merde"] = { behaviour = "after", image = "poop.tga" },
-    ["+1"] = { behaviour = "replace", image = "nek-pouce.tga"},
+    ["+1"] = { behaviour = "replace", image = "nek-pouce.tga" },
     ["ok"] = { behaviour = "replace", image = "nek-pouce.tga", wholeWord = true },
-    ["lool"] = { behaviour = "replace", image = "neph-lol.tga"},
+    ["lool"] = { behaviour = "replace", image = "neph-lol.tga" },
     ["saucisse"] = { behaviour = "after", image = "sausage.tga" },
 }
 
@@ -65,6 +65,59 @@ local function replaceEmotesInText(text)
     return text
 end
 
+-- helper to show emotes help in chat
+local function printEmotesHelp()
+    local buckets = {
+        replace = {},
+        before = {},
+        after = {},
+        other = {},
+    }
+
+    -- Regroup by behaviour
+    for code, e in pairs(emotes) do
+        local key = e.behaviour
+        if key ~= "replace" and key ~= "before" and key ~= "after" then
+            key = "other"
+        end
+        table.insert(buckets[key], { code = code, emote = e })
+    end
+
+    local function sortByCode(a, b)
+        return tostring(a.code) < tostring(b.code)
+    end
+    for _, list in pairs(buckets) do
+        table.sort(list, sortByCode)
+    end
+
+    -- Rend une entrée "icône + code"
+    local function renderEntry(item)
+        return getEmoteTag(item.emote) .. " |cffffffff" .. item.code .. "|r"
+    end
+
+    -- Header
+    DEFAULT_CHAT_FRAME:AddMessage("|cffffff00PelicanUI - Emotes disponibles !|r")
+
+    -- Map des libellés (gris) et ordre d’affichage
+    local sections = {
+        { key = "replace", label = "|cffaaaaaa[Remplacement]|r" },
+        { key = "before", label = "|cffaaaaaa[Icône avant]|r" },
+        { key = "after", label = "|cffaaaaaa[Icône après]|r" },
+    }
+
+    -- One line by behaviour
+    for _, s in ipairs(sections) do
+        local list = buckets[s.key]
+        if list and #list > 0 then
+            local parts = {}
+            for _, item in ipairs(list) do
+                table.insert(parts, renderEntry(item))
+            end
+            DEFAULT_CHAT_FRAME:AddMessage(s.label .. "  " .. table.concat(parts, "   "))
+        end
+    end
+end
+
 -- Filter applying emote replacement in messages
 local function emoteMessageFilter(_, _, msg, sender, ...)
     local updatedMsg = replaceEmotesInText(msg)
@@ -85,5 +138,13 @@ function Emotes:Initialize()
     }
     for _, event in ipairs(eventsToFilter) do
         ChatFrame_AddMessageEventFilter(event, emoteMessageFilter)
+    end
+
+    -- Help commands
+    SLASH_PELI1 = "/peli"
+    SLASH_PELI2 = "/pelimotes"
+    SLASH_PELI3 = "/emotes"
+    SlashCmdList["PELI"] = function()
+        printEmotesHelp()
     end
 end
