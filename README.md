@@ -20,4 +20,4 @@ Lancer commande en mode administrateur :
 ## Informations pratiques
 
 **Taille des images pour Emoji** : 32x32 (format TGA)  
-**Taille des images pour Award** : 1000x1000 (format PNG)
+**Taille des images pour Award** : 450x450 (format PNG)
