@@ -10,8 +10,8 @@ local pelimemes = {
     ["jae"] = { desc = "Jae Hippie", image = "jae.png", animation = "simpleDisplay" },
     ["molky"] = { desc = "Molky espiègle", image = "molky.png", animation = "rightSlide", sound = "tu-veut-voir-ma.mp3" },
     ["nephlol"] = { desc = "Neph LOL", image = "nephlol.png", animation = "bounce", sound = "haha.wav" },
-    ["gogofuck"] = { desc = "Gogo FUCK", image = "gogofuck.png", animation = "simpleDisplay" },
-    ["gogorain"] = { desc = "Pluie de Gogo", image = "gogofuck.png", animation = "rain" },
+    ["gogo"] = { desc = "Gogo", image = "gogo.png", animation = "simpleDisplay" },
+    ["gogorain"] = { desc = "Pluie de Gogo", image = "gogo.png", animation = "rain" },
 }
 
 local lastReceivedPelimemeTimestamp = nil

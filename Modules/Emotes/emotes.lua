@@ -13,7 +13,6 @@ local emotes = {
     [":o"] = { behaviour = "replace", image = "open-mouth.tga" },
     [";)"] = { behaviour = "replace", image = "wink.tga" },
     [":'("] = { behaviour = "replace", image = "cry.tga" },
-    ["fuck"] = { behaviour = "after", image = "gogo-fuck.tga", wholeWord = true },
     ["meh"] = { behaviour = "replace", image = "gamine.tga", wholeWord = true },
     ["murloc"] = { behaviour = "after", image = "murloc.tga", wholeWord = true },
     ["zzz"] = { behaviour = "replace", image = "zzz.tga", wholeWord = true },
