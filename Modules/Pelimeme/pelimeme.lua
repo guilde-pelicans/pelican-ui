@@ -3,8 +3,8 @@ local Pelimeme = {}
 PelicanUI_Pelimeme = Pelimeme
 
 -- Define base directories for memes and sounds
-local IMAGE_BASE_PATH = "Interface\\AddOns\\PelicanUI\\Medias\\memes\\"
-local SOUND_BASE_PATH = "Interface\\AddOns\\PelicanUI\\Medias\\sounds\\"
+local IMAGE_BASE_PATH = "Interface\\AddOns\\PelicansUI\\Medias\\memes\\"
+local SOUND_BASE_PATH = "Interface\\AddOns\\PelicansUI\\Medias\\sounds\\"
 
 local pelimemes = {
     ["jae"] = { desc = "Jae Hippie", image = "jae.png", animation = "simpleDisplay" },

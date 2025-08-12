@@ -33,7 +33,7 @@ configurationDesc:SetText("Beaucoup de réglages pour un add-on qui ne sert à r
 
 -- Display the Murloc image (reste dans la zone scrollable, ancré à droite)
 local murlocImage = content:CreateTexture(nil, "ARTWORK")
-murlocImage:SetTexture("Interface\\AddOns\\PelicanUI\\Medias\\configuration-logo.png")
+murlocImage:SetTexture("Interface\\AddOns\\PelicansUI\\Medias\\configuration-logo.png")
 murlocImage:SetSize(230, 230)
 murlocImage:SetPoint("TOPRIGHT", -16, -16)
 murlocImage:SetAlpha(0.5)
@@ -57,7 +57,7 @@ local function CreateInfoIconWithImage(parent, anchorTo, offsetX, offsetY)
     tex:SetAllPoints(true)
     tex:SetTexture("Interface\\FriendsFrame\\InformationIcon")
 
-    local IMAGE_PATH = "Interface\\AddOns\\PelicanUI\\Medias\\docs\\menu.png"
+    local IMAGE_PATH = "Interface\\AddOns\\PelicansUI\\Medias\\docs\\menu.png"
 
     icon:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT")

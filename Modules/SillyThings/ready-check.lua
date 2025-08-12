@@ -2,9 +2,9 @@
 local ReadyCheck = {}
 PelicanUI_ReadyCheck = ReadyCheck
 
-local IMAGE_PATH_RC = "Interface\\AddOns\\PelicanUI\\Medias\\ready\\ready-check.png"
-local IMAGE_PATH_GO = "Interface\\AddOns\\PelicanUI\\Medias\\ready\\ready-go.png"
-local SOUND_BASE_PATH = "Interface\\AddOns\\PelicanUI\\Medias\\sounds\\"
+local IMAGE_PATH_RC = "Interface\\AddOns\\PelicansUI\\Medias\\ready\\ready-check.png"
+local IMAGE_PATH_GO = "Interface\\AddOns\\PelicansUI\\Medias\\ready\\ready-go.png"
+local SOUND_BASE_PATH = "Interface\\AddOns\\PelicansUI\\Medias\\sounds\\"
 
 local function playSound(filePath)
     if not filePath or filePath == "" then

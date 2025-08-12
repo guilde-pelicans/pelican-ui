@@ -2,7 +2,7 @@
 local Emotes = {}
 PelicanUI_Emotes = Emotes
 
-local IMAGE_BASE_PATH = "Interface\\AddOns\\pelicanUI\\Medias\\emotes\\"
+local IMAGE_BASE_PATH = "Interface\\AddOns\\PelicansUI\\Medias\\emotes\\"
 
 -- Table of emotes
 local emotes = {

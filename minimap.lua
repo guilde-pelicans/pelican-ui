@@ -1,5 +1,5 @@
 local ADDON_NAME = "PelicanUI"
-local ICON_PATH = "Interface\\AddOns\\PelicanUI\\Medias\\icon.tga"
+local ICON_PATH = "Interface\\AddOns\\PelicansUI\\Medias\\icon.tga"
 
 -- Do not initialize SavedVariables at the top to avoid early references
 -- before the saved variables are loaded. They will be prepared in ADDON_LOADED.

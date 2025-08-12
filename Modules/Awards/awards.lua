@@ -2,9 +2,9 @@
 local Awards = {}
 PelicanUI_Awards = Awards
 
-local IMAGE_BASE_PATH = "Interface\\AddOns\\PelicanUI\\Medias\\awards\\"
-local SOUND_BASE_PATH = "Interface\\AddOns\\PelicanUI\\Medias\\sounds\\"
-local CUSTOM_FONT_PATH = "Interface\\AddOns\\pelicanUI\\Medias\\fonts\\Impacted20.ttf"
+local IMAGE_BASE_PATH = "Interface\\AddOns\\PelicansUI\\Medias\\awards\\"
+local SOUND_BASE_PATH = "Interface\\AddOns\\PelicansUI\\Medias\\sounds\\"
+local CUSTOM_FONT_PATH = "Interface\\AddOns\\PelicansUI\\Medias\\fonts\\Impacted20.ttf"
 local AWARD_DISPLAY_SIZE = 450
 
 -- Awards configurations
