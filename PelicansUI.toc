@@ -5,6 +5,7 @@
 ## Version: 0.1.5
 ## SavedVariables: PelicanUI_Settings
 ## IconTexture: Interface\AddOns\PelicansUI\Medias\icon.tga
+## X-Curse-Project-ID: 1326041
 
 Libs\LibStub.lua
 Libs\CallbackHandler-1.0.lua
