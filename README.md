@@ -1,23 +1,24 @@
 ![Configuration Logo](Medias/configuration-logo.png)
-# Pelican UI
+# Pelicans UI
 
-Projet expérimental.
+Pelicans UI is a lightweight, guild-flavored addon designed to add a bit of fun to your everyday gameplay. It brings custom emotes, upgraded ready-check feedback, animated meme sharing via player context menus, and a simple “Awards” feature to celebrate (or roast) your friends in group content.
 
-Add-on pour la guilde Pélican sur world of warcraft.
+## Features
 
-## Memos
+**Emotes**: View and use custom guild emotes in-game.
+**Ready-check boost**: Extra visuals and sounds for the native ready-check.
+**PeliMeme**: Send and receive short animated memes to a target or your group via right-click player menu. Never triggers while in combat.
+**Pelican Awards**: As group/raid leader, display a short “distinction” for a member (limited to once per minute).
+**Global mute**: Option to disable all addon sounds.
+**Minimap access**: Quick toggle and access via a minimap icon.
 
-Activer / Désactiver l'affichage des erreurs in-game :
+###  Slash Commands
 
-`/console scriptErrors 0`  
-`/console scriptErrors 1`
+`/pelican` — Open the configuration panel.
+`/peli`, `/pelimotes`, `/emotes` — Show available custom emotes.
 
-Créer un lien symbolique pour le dossier AddOns :
+### Configuration
 
-Lancer commande en mode administrateur :  
-`mklink /D "C:\Program Files (x86)\World of Warcraft\_retail_\Interface\AddOns\pelicanUI" "F:\Documents\Workspace\wow-addon\pelican-ui"`
-
-## Informations pratiques
-
-**Taille des images pour Emoji** : 32x32 (format TGA)  
-**Taille des images pour Award** : 450x450 (format PNG)
+Game Menu > AddOns > PelicanUI (or use /pelican).
+Toggle modules on/off individually.
+Set a minimum delay between incoming PeliMeme animations to avoid spam.
