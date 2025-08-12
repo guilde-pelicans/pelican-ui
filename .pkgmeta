@@ -2,3 +2,6 @@
 package-as: PelicansUI
 enable-nolib-creation: no
 
+curseforge:
+  project-id: 1326041
+  release-type: release
