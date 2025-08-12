@@ -1,0 +1,4 @@
+# .pkgmeta
+package-as: PelicansUI
+enable-nolib-creation: no
+
