@@ -2,7 +2,7 @@
 ## Title: PelicanUI
 ## Notes: Add-on pour la guilde Pélicans
 ## Author: Nek
-## Version: 1.0.0-beta1
+## Version: 0.1.0
 ## SavedVariables: PelicanUI_Settings
 ## IconTexture: Interface\AddOns\PelicanUI\Medias\icon.tga
 
