@@ -1,10 +1,10 @@
 ## Interface: 100200
-## Title: PelicanUI
-## Notes: Add-on pour la guilde Pélicans
+## Title: Pelicans UI
+## Notes: A lighthearted guild-focused addon that adds some fun features
 ## Author: Nek
 ## Version: 0.1.0
 ## SavedVariables: PelicanUI_Settings
-## IconTexture: Interface\AddOns\PelicanUI\Medias\icon.tga
+## IconTexture: Interface\AddOns\PelicansUI\Medias\icon.tga
 
 Libs\LibStub.lua
 Libs\CallbackHandler-1.0.lua
