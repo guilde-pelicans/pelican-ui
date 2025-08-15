@@ -154,8 +154,7 @@ function PelicanUI_Awards.displayAward(imagePath, sound, pseudo)
     local initialDelay = animationGroup:CreateAnimation("Alpha")
     initialDelay:SetFromAlpha(1)
     initialDelay:SetToAlpha(1)
-    initialDelay:SetDuration(4)
-    initialDelay:SetDuration(4)
+    initialDelay:SetDuration(3)
     initialDelay:SetOrder(1)
 
     -- Move the image and text down together
