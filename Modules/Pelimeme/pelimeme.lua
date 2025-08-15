@@ -10,8 +10,10 @@ local pelimemes = {
     ["jae"] = { desc = "Jae Hippie", image = "jae.png", animation = "simpleDisplay" },
     ["molky"] = { desc = "Molky espiègle", image = "molky.png", animation = "rightSlide", sound = "tu-veut-voir-ma.mp3" },
     ["nephlol"] = { desc = "Neph LOL", image = "nephlol.png", animation = "bounce", sound = "haha.wav" },
-    ["gogo"] = { desc = "Gogo", image = "gogo.png", animation = "bounce" },
+    ["gogo"] = { desc = "Gogo", image = "gogo.png", animation = "simpleDisplay" },
     ["gogorain"] = { desc = "Pluie de Gogo", image = "gogo.png", animation = "rain" },
+    ["sausage"] = { desc = "Saucisse", image = "sausage.png", animation = "shake" },
+    ["sausagerain"] = { desc = "Pluie de saucisses", image = "sausage.png", animation = "rain" },
 }
 
 local lastReceivedPelimemeTimestamp = nil
@@ -83,29 +85,50 @@ local function handlePelimemeReception(sender, pelimemeID)
 end
 
 -- Send Pelimeme with a command
+SLASH_PELIMEME1 = "/pelimeme"
 SlashCmdList["PELIMEME"] = function(msg)
-    local args = {}
-    for word in msg:gmatch("%S+") do
-        table.insert(args, word)
-    end
-
-    if args[1] == "mute" then
-        isMuted = not isMuted
-        print(isMuted and "Pelimeme désactivés." or "Pelimeme activés.")
-    elseif args[1] and args[2] then
-        local pelimemeID = args[1]
-        local playerName = args[2]
-
-        if isMuted then
-            print("Pelimeme désactivé.")
-            return
-        end
-
-        C_ChatInfo.SendAddonMessage("PELIMEME", pelimemeID, "WHISPER", playerName)
-        print("Pelimeme envoyé à " .. playerName)
-    else
+    -- Aide si aucun argument
+    if msg == nil or msg == "" then
         print("Utilisation : /pelimeme [nom_pelimeme] [nom_du_joueur] ou /pelimeme mute")
+        print("Types de PéliMeme disponibles :")
+        for id, info in pairs(pelimemes) do
+            print(" - " .. id .. " : " .. (info.desc or ""))
+        end
+        return
     end
+
+    -- Gestion du mute
+    local first = msg:match("^(%S+)$")
+    if first == "mute" then
+        isMuted = not isMuted
+        print(isMuted and "PéliMeme désactivé jusqu'à la déconnexion ou un /reload." or "Pélimeme activés.")
+        return
+    end
+
+    -- Parse id + joueur
+    local pelimemeID, playerName = msg:match("^(%S+)%s+(%S+)$")
+    if not pelimemeID or not playerName then
+        print("Utilisation : /pelimeme [nom_pelimeme] [nom_du_joueur] ou /pelimeme mute")
+        print("Types de PéliMeme disponibles :")
+        for id, info in pairs(pelimemes) do
+            print(" - " .. id .. " : " .. (info.desc or ""))
+        end
+        return
+    end
+
+    -- Vérification du type demandé
+    if not pelimemes[pelimemeID] then
+        print("Type de PéliMeme invalide : " .. pelimemeID)
+        print("Types disponibles :")
+        for id in pairs(pelimemes) do
+            print(" - " .. id)
+        end
+        return
+    end
+
+    -- Envoi en chuchotement au joueur cible (comportement actuel conservé)
+    C_ChatInfo.SendAddonMessage("PELIMEME", pelimemeID, "WHISPER", playerName)
+    print((pelimemes[pelimemeID].desc or pelimemeID) .. " envoyé à " .. playerName)
 end
 
 -- Create context menu for players

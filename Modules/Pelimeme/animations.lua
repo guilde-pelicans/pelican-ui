@@ -5,7 +5,7 @@ PelicanUI_Animations = {}
 function PelicanUI_Animations.simpleDisplay(imagePath)
     local frame = CreateFrame("Frame", nil, UIParent)
     frame:SetSize(250, 250)
-    frame:SetPoint("CENTER", UIParent, "TOP", 0, -150)
+    frame:SetPoint("CENTER", UIParent, "TOP", 0, -300)
 
     local texture = frame:CreateTexture(nil, "BACKGROUND")
     texture:SetAllPoints(frame)
@@ -76,7 +76,7 @@ end
 -- Animation function: rain (with memes twice as large)
 function PelicanUI_Animations.rain(imagePath)
     local duration = 2.5
-    local numImages = 45
+    local numImages = 40
     local screenWidth = GetScreenWidth()
     local screenHeight = GetScreenHeight()
     local imageSize = 128 -- Image size doubled (64 * 2)
@@ -91,12 +91,27 @@ function PelicanUI_Animations.rain(imagePath)
         texture:SetTexture(imagePath)
         texture:SetAlpha(1)
 
+        -- Inclinaison initiale aléatoire (petit angle pour la variété visuelle)
+        -- entre -25° et 25°
+        texture:SetRotation(math.rad(math.random(-25, 25)))
+
         local animationGroup = frame:CreateAnimationGroup()
 
+        -- Déplacement vers le bas
         local moveDown = animationGroup:CreateAnimation("Translation")
         moveDown:SetOffset(0, -screenHeight - 200)
         moveDown:SetDuration(duration)
         moveDown:SetSmoothing("OUT")
+        moveDown:SetOrder(1)
+
+        -- Rotation pendant la chute (parallèle au déplacement)
+        local spin = animationGroup:CreateAnimation("Rotation")
+        -- Angle total aléatoire pendant la descente (sens et amplitude)
+        spin:SetDegrees((math.random(0, 1) == 1 and 1 or -1) * math.random(180, 540))
+        spin:SetDuration(duration)
+        spin:SetSmoothing("IN_OUT")
+        spin:SetOrigin("CENTER", 0, 0)
+        spin:SetOrder(1)
 
         animationGroup:SetScript("OnFinished", function()
             frame:Hide()
@@ -198,4 +213,85 @@ function PelicanUI_Animations.rightSlide(imagePath)
 
     frame:Show()
     animationGroup:Play()
+end
+
+-- Animation function: shake (leftSlide + shake/rotation before sliding out)
+function PelicanUI_Animations.shake(imagePath)
+    local frame = CreateFrame("Frame", nil, UIParent)
+    frame:SetSize(300, 300)
+
+    -- Initial position completely off-screen to the left
+    frame:SetPoint("LEFT", UIParent, "LEFT", -300, 0)
+
+    local texture = frame:CreateTexture(nil, "BACKGROUND")
+    texture:SetAllPoints(frame)
+    texture:SetTexture(imagePath)
+
+    local ag = frame:CreateAnimationGroup()
+
+    -- 1) Slide in (same as leftSlide)
+    local slideIn = ag:CreateAnimation("Translation")
+    slideIn:SetOffset(450, 0)
+    slideIn:SetDuration(1.5)
+    slideIn:SetSmoothing("IN_OUT")
+    slideIn:SetOrder(1)
+
+    -- 2) Shake (quick rotations around center)
+    -- Keep total rotation sum to 0 so we end at the original angle
+    local r1 = ag:CreateAnimation("Rotation")
+    r1:SetDegrees(6)
+    r1:SetDuration(0.08)
+    r1:SetOrder(2)
+    r1:SetSmoothing("IN_OUT")
+    r1:SetOrigin("CENTER", 0, 0)
+
+    local r2 = ag:CreateAnimation("Rotation")
+    r2:SetDegrees(-12)
+    r2:SetDuration(0.10)
+    r2:SetOrder(3)
+    r2:SetSmoothing("IN_OUT")
+    r2:SetOrigin("CENTER", 0, 0)
+
+    local r3 = ag:CreateAnimation("Rotation")
+    r3:SetDegrees(10)
+    r3:SetDuration(0.10)
+    r3:SetOrder(4)
+    r3:SetSmoothing("IN_OUT")
+    r3:SetOrigin("CENTER", 0, 0)
+
+    local r4 = ag:CreateAnimation("Rotation")
+    r4:SetDegrees(-8)
+    r4:SetDuration(0.10)
+    r4:SetOrder(5)
+    r4:SetSmoothing("IN_OUT")
+    r4:SetOrigin("CENTER", 0, 0)
+
+    local r5 = ag:CreateAnimation("Rotation")
+    r5:SetDegrees(4) -- back to the initial angle (sum = 0)
+    r5:SetDuration(0.08)
+    r5:SetOrder(6)
+    r5:SetSmoothing("IN_OUT")
+    r5:SetOrigin("CENTER", 0, 0)
+
+    -- Small hold after the shake
+    local hold = ag:CreateAnimation("Alpha")
+    hold:SetFromAlpha(1)
+    hold:SetToAlpha(1)
+    hold:SetDuration(0.5)
+    hold:SetOrder(7)
+
+    -- 3) Slide out (same as leftSlide)
+    local slideOut = ag:CreateAnimation("Translation")
+    slideOut:SetOffset(-450, 0)
+    slideOut:SetDuration(1.0)
+    slideOut:SetSmoothing("IN_OUT")
+    slideOut:SetOrder(8)
+
+    ag:SetScript("OnFinished", function()
+        frame:Hide()
+        frame = nil
+    end)
+
+    frame:Show()
+    ag:Play()
 end
