@@ -5,7 +5,7 @@ PelicanUI_Settings = PelicanUI_Settings or {
     TooltipsEnabled = true,
     AwardsEnabled = true,
     ReadyCheckEnabled = true,
-    PelimemeMinDelay = 30,
+    PelimemeMinDelay = 60,
     DisableSounds = false
 }
 
