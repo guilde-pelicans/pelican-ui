@@ -17,6 +17,45 @@ local awards = {
     ["carry"] = { desc = "Carry", image = "carry.png", sound = "celebration.mp3" },
 }
 
+local function sanitizePseudo(str)
+    if not str or str == "" then
+        return ""
+    end
+
+    local repl = {
+        -- A
+        ["À"]="A", ["Á"]="A", ["Â"]="A", ["Ã"]="A", ["Ä"]="A", ["Å"]="A",
+        ["à"]="a", ["á"]="a", ["â"]="a", ["ã"]="a", ["ä"]="a", ["å"]="a",
+        -- AE / OE / autres ligatures
+        ["Æ"]="AE", ["æ"]="ae", ["Œ"]="OE", ["œ"]="oe",
+        -- C
+        ["Ç"]="C", ["ç"]="c",
+        -- E
+        ["È"]="E", ["É"]="E", ["Ê"]="E", ["Ë"]="E",
+        ["è"]="e", ["é"]="e", ["ê"]="e", ["ë"]="e",
+        -- I
+        ["Ì"]="I", ["Í"]="I", ["Î"]="I", ["Ï"]="I",
+        ["ì"]="i", ["í"]="i", ["î"]="i", ["ï"]="i",
+        -- N
+        ["Ñ"]="N", ["ñ"]="n",
+        -- O
+        ["Ò"]="O", ["Ó"]="O", ["Ô"]="O", ["Õ"]="O", ["Ö"]="O", ["Ø"]="O",
+        ["ò"]="o", ["ó"]="o", ["ô"]="o", ["õ"]="o", ["ö"]="o", ["ø"]="o",
+        -- U
+        ["Ù"]="U", ["Ú"]="U", ["Û"]="U", ["Ü"]="U",
+        ["ù"]="u", ["ú"]="u", ["û"]="u", ["ü"]="u",
+        -- Y
+        ["Ý"]="Y", ["Ÿ"]="Y", ["ý"]="y", ["ÿ"]="y",
+        -- S
+        ["ß"]="b",
+    }
+
+    -- Appliquer les remplacements
+    str = (str:gsub("[\192-\255][\128-\191]*", repl))
+
+    return str
+end
+
 -- Store last award time per user for anti-spam
 local lastReceivedAwardTimestamp = {}
 
@@ -89,7 +128,11 @@ function PelicanUI_Awards.displayAward(imagePath, sound, pseudo)
 
     -- Add pseudo text directly on the frame to move with it
     local text = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
-    text:SetText(pseudo)
+
+    -- Sanitize le pseudo pour l'affichage (sans accents/ligatures/caractères spéciaux)
+    local safePseudo = sanitizePseudo(pseudo)
+
+    text:SetText(safePseudo)
     text:SetTextColor(0, 0, 0, 1)
 
     local fontLoaded = text:SetFont(CUSTOM_FONT_PATH, 30)

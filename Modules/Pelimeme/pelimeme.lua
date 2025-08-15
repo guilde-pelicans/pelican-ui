@@ -10,7 +10,7 @@ local pelimemes = {
     ["jae"] = { desc = "Jae Hippie", image = "jae.png", animation = "simpleDisplay" },
     ["molky"] = { desc = "Molky espiègle", image = "molky.png", animation = "rightSlide", sound = "tu-veut-voir-ma.mp3" },
     ["nephlol"] = { desc = "Neph LOL", image = "nephlol.png", animation = "bounce", sound = "haha.wav" },
-    ["gogo"] = { desc = "Gogo", image = "gogo.png", animation = "simpleDisplay" },
+    ["gogo"] = { desc = "Gogo", image = "gogo.png", animation = "bounce" },
     ["gogorain"] = { desc = "Pluie de Gogo", image = "gogo.png", animation = "rain" },
 }
 

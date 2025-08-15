@@ -76,7 +76,7 @@ end
 -- Animation function: rain (with memes twice as large)
 function PelicanUI_Animations.rain(imagePath)
     local duration = 2.5
-    local numImages = 70
+    local numImages = 45
     local screenWidth = GetScreenWidth()
     local screenHeight = GetScreenHeight()
     local imageSize = 128 -- Image size doubled (64 * 2)
