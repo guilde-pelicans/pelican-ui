@@ -49,15 +49,17 @@ end
 -- Handle Pelimeme reception (Anti-Spam and Mute Verification)
 local function handlePelimemeReception(sender, pelimemeID)
 
+    local desc = pelimemes[pelimemeID] and pelimemes[pelimemeID].desc or "Inconnu"
+
     -- Check if player is in fight
     if UnitAffectingCombat("player") then
-        print("Pelimeme bloqué car vous êtes en combat.")
+        print(desc .. " de " .. sender .. " bloqué car vous êtes en combat.")
         C_ChatInfo.SendAddonMessage("PELIMEME_BLOCKED", "Le destinataire est en train de COMBATTRE", "WHISPER", sender)
         return false
     end
 
     if isMuted then
-        print("Pelimeme bloqué. Activez-les avec /pelimeme mute.")
+        print(desc .. " de " .. sender .. " bloqué car vous êtes en mode avion.")
         C_ChatInfo.SendAddonMessage("PELIMEME_BLOCKED", "le destinataire est en mode avion", "WHISPER", sender)
         return false
     end
@@ -73,8 +75,6 @@ local function handlePelimemeReception(sender, pelimemeID)
     end
 
     lastReceivedPelimemeTimestamp = currentTime
-
-    local desc = pelimemes[pelimemeID] and pelimemes[pelimemeID].desc or "Inconnu"
 
     displayPelimeme(pelimemeID)
     print(desc .. " reçu de " .. sender)
@@ -134,18 +134,21 @@ local function UpdateContextMenu(_, parent, data)
     for pelimemeID, pelimemeInfo in pairs(pelimemes) do
         if personalSubmenu then
             personalSubmenu:CreateButton(pelimemeInfo.desc, function()
+                print(pelimemeInfo.desc .. " envoyé à " .. targetPlayer)
                 C_ChatInfo.SendAddonMessage("PELIMEME", pelimemeID, "WHISPER", targetPlayer)
             end, false)
         end
 
         if raidSubmenu then
             raidSubmenu:CreateButton(pelimemeInfo.desc, function()
+                print(pelimemeInfo.desc .. " envoyé au raid")
                 C_ChatInfo.SendAddonMessage("PELIMEME", pelimemeID, "RAID")
             end, false)
         end
 
         if groupSubmenu then
             groupSubmenu:CreateButton(pelimemeInfo.desc, function()
+                print(pelimemeInfo.desc .. " envoyé au groupe")
                 C_ChatInfo.SendAddonMessage("PELIMEME", pelimemeID, "PARTY")
             end, false)
         end
@@ -161,7 +164,7 @@ function Pelimeme:Initialize()
         if prefix == "PELIMEME" then
             handlePelimemeReception(sender, message)
         elseif prefix == "PELIMEME_BLOCKED" then
-            print("Votre Pelimeme a été bloqué. " .. message)
+            print("Votre Pélimeme a été bloqué. " .. message)
         end
     end)
     C_ChatInfo.RegisterAddonMessagePrefix("PELIMEME")

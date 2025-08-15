@@ -5,7 +5,7 @@ PelicanUI_Settings = PelicanUI_Settings or {
     TooltipsEnabled = true,
     AwardsEnabled = true,
     ReadyCheckEnabled = true,
-    PelimemeMinDelay = 10,
+    PelimemeMinDelay = 30,
     DisableSounds = false
 }
 
@@ -13,24 +13,29 @@ local mainFrame = CreateFrame("Frame")
 mainFrame:RegisterEvent("PLAYER_LOGIN")
 mainFrame:SetScript("OnEvent", function(_, event)
     if event == "PLAYER_LOGIN" then
+
+        local welcomeMsg = "Module Pélicans chargés : "
+
         if PelicanUI_Settings.EmotesEnabled then
             PelicanUI_Emotes:Initialize()
-            print("Module Emotes - actif")
+            welcomeMsg = welcomeMsg .. " Emotes"
         end
 
         if PelicanUI_Settings.PelimemeEnabled then
             PelicanUI_Pelimeme:Initialize()
-            print("Module Pelimeme - actif")
+            welcomeMsg = welcomeMsg .. " Pélimeme"
         end
 
         if PelicanUI_Settings.ReadyCheckEnabled then
             PelicanUI_ReadyCheck:Initialize()
-            print("Module ReadyCheck - actif")
+            welcomeMsg = welcomeMsg .. " ReadyCheck"
         end
 
         if PelicanUI_Settings.AwardsEnabled then
             PelicanUI_Awards:Initialize()
-            print("Module Awards - actif")
+            welcomeMsg = welcomeMsg .. " Awards"
         end
+
+        print(welcomeMsg)
     end
 end)
