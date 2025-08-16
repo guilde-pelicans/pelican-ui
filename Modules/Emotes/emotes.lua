@@ -20,7 +20,6 @@ local emotes = {
     ["merde"] = { behaviour = "after", image = "poop.tga" },
     ["+1"] = { behaviour = "replace", image = "nek-pouce.tga" },
     ["ok"] = { behaviour = "replace", image = "nek-pouce.tga", wholeWord = true },
-    ["lool"] = { behaviour = "replace", image = "neph-lol.tga" },
     ["saucisse"] = { behaviour = "after", image = "sausage.tga" },
 }
 

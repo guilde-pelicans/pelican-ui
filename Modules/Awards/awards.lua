@@ -85,6 +85,14 @@ local function handleAwardReception(sender, message)
         return
     end
 
+    -- Prevent reception in combat
+    local desc = award.desc or awardType
+    if UnitAffectingCombat("player") then
+        print(desc .. " de " .. sender .. " bloqué car vous êtes en combat.")
+        C_ChatInfo.SendAddonMessage("PELAWARD_BLOCKED", "Le destinataire est en train de COMBATTRE", "WHISPER", sender)
+        return
+    end
+
     -- Check anti-spam
     local currentTime = GetServerTime()
     local cooldownPeriod = 60 -- 60 seconds
