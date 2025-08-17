@@ -87,7 +87,7 @@ end
 -- Send Pelimeme with a command
 SLASH_PELIMEME1 = "/pelimeme"
 SlashCmdList["PELIMEME"] = function(msg)
-    -- Aide si aucun argument
+    -- Help command
     if msg == nil or msg == "" then
         print("Utilisation : /pelimeme [nom_pelimeme] [nom_du_joueur] ou /pelimeme mute")
         print("Types de PéliMeme disponibles :")
@@ -97,7 +97,7 @@ SlashCmdList["PELIMEME"] = function(msg)
         return
     end
 
-    -- Gestion du mute
+    -- Mute command
     local first = msg:match("^(%S+)$")
     if first == "mute" then
         isMuted = not isMuted
@@ -105,7 +105,6 @@ SlashCmdList["PELIMEME"] = function(msg)
         return
     end
 
-    -- Parse id + joueur
     local pelimemeID, playerName = msg:match("^(%S+)%s+(%S+)$")
     if not pelimemeID or not playerName then
         print("Utilisation : /pelimeme [nom_pelimeme] [nom_du_joueur] ou /pelimeme mute")
@@ -116,7 +115,6 @@ SlashCmdList["PELIMEME"] = function(msg)
         return
     end
 
-    -- Vérification du type demandé
     if not pelimemes[pelimemeID] then
         print("Type de PéliMeme invalide : " .. pelimemeID)
         print("Types disponibles :")
@@ -126,7 +124,6 @@ SlashCmdList["PELIMEME"] = function(msg)
         return
     end
 
-    -- Envoi en chuchotement au joueur cible (comportement actuel conservé)
     C_ChatInfo.SendAddonMessage("PELIMEME", pelimemeID, "WHISPER", playerName)
     print((pelimemes[pelimemeID].desc or pelimemeID) .. " envoyé à " .. playerName)
 end

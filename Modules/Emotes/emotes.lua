@@ -88,7 +88,7 @@ local function printEmotesHelp()
         table.sort(list, sortByCode)
     end
 
-    -- Rend une entrée "icône + code"
+    -- Display "emote + code" entry
     local function renderEntry(item)
         return getEmoteTag(item.emote) .. " |cffffffff" .. item.code .. "|r"
     end
@@ -96,7 +96,6 @@ local function printEmotesHelp()
     -- Header
     DEFAULT_CHAT_FRAME:AddMessage("|cffffff00PelicanUI - Emotes disponibles !|r")
 
-    -- Map des libellés (gris) et ordre d’affichage
     local sections = {
         { key = "replace", label = "|cffaaaaaa[Remplacement]|r" },
         { key = "before", label = "|cffaaaaaa[Icône avant]|r" },

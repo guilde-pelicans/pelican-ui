@@ -208,7 +208,6 @@ awardsDesc2:SetJustifyH("LEFT")
 awardsDesc2:SetText("(si vous en êtes le chef uniquement)")
 CreateInfoIconWithImage(content, awardsDesc2, 6, 0)
 
--- Note en jaune
 local awardsNote = content:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
 awardsNote:SetPoint("TOPLEFT", awardsDesc2, "BOTTOMLEFT", 0, -6)
 awardsNote:SetWidth(520)

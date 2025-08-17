@@ -169,7 +169,7 @@ local function AreAllReady()
     return everyoneAnswered, allReady
 end
 
--- Cache du dernier état connu pendant le ready check
+-- Save last know state while ready check
 local lastEveryoneAnswered, lastAllReady = false, false
 
 function ReadyCheck:Initialize()
@@ -179,20 +179,19 @@ function ReadyCheck:Initialize()
     frame:RegisterEvent("READY_CHECK_FINISHED")
     frame:SetScript("OnEvent", function(_, event)
         if event == "READY_CHECK" then
-            -- Réinitialiser le cache au début d’un ready check
             lastEveryoneAnswered, lastAllReady = false, false
             rcStartAnimation()
 
         elseif event == "READY_CHECK_CONFIRM" then
             local everyoneAnswered, allReady = AreAllReady()
-            -- Mémoriser l’état le plus récent car l'event est trigger plusieurs fois par joueur
+
+            -- this event is trigger multiple time by player, so we save the last know player status
             lastEveryoneAnswered, lastAllReady = everyoneAnswered, allReady
             if everyoneAnswered and allReady then
                 rcGoAnimation()
             end
 
         elseif event == "READY_CHECK_FINISHED" then
-            -- Utiliser l’état mémorisé au lieu de recalculer
             if lastEveryoneAnswered and not lastAllReady then
                 playSound("sad-noise.mp3")
             end

@@ -73,13 +73,13 @@ function PelicanUI_Animations.bounce(imagePath)
     bounce:Play()
 end
 
--- Animation function: rain (with memes twice as large)
+-- Animation function: rain
 function PelicanUI_Animations.rain(imagePath)
     local duration = 2.5
     local numImages = 40
     local screenWidth = GetScreenWidth()
     local screenHeight = GetScreenHeight()
-    local imageSize = 128 -- Image size doubled (64 * 2)
+    local imageSize = 128
 
     for i = 1, numImages do
         local frame = CreateFrame("Frame", nil, UIParent)
@@ -90,23 +90,18 @@ function PelicanUI_Animations.rain(imagePath)
         texture:SetAllPoints(frame)
         texture:SetTexture(imagePath)
         texture:SetAlpha(1)
-
-        -- Inclinaison initiale aléatoire (petit angle pour la variété visuelle)
-        -- entre -25° et 25°
         texture:SetRotation(math.rad(math.random(-25, 25)))
 
         local animationGroup = frame:CreateAnimationGroup()
 
-        -- Déplacement vers le bas
         local moveDown = animationGroup:CreateAnimation("Translation")
         moveDown:SetOffset(0, -screenHeight - 200)
         moveDown:SetDuration(duration)
         moveDown:SetSmoothing("OUT")
         moveDown:SetOrder(1)
 
-        -- Rotation pendant la chute (parallèle au déplacement)
+        -- Handle random spinning
         local spin = animationGroup:CreateAnimation("Rotation")
-        -- Angle total aléatoire pendant la descente (sens et amplitude)
         spin:SetDegrees((math.random(0, 1) == 1 and 1 or -1) * math.random(180, 540))
         spin:SetDuration(duration)
         spin:SetSmoothing("IN_OUT")
