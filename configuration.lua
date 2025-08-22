@@ -31,7 +31,7 @@ local configurationDesc = optionsFrame:CreateFontString(nil, "ARTWORK", "GameFon
 configurationDesc:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -5)
 configurationDesc:SetText("Beaucoup de réglages pour un add-on qui ne sert à rien.")
 
--- Display the Murloc image (reste dans la zone scrollable, ancré à droite)
+-- Display the Murloc image in scrollable zone
 local murlocImage = content:CreateTexture(nil, "ARTWORK")
 murlocImage:SetTexture("Interface\\AddOns\\PelicansUI\\Medias\\configuration-logo.png")
 murlocImage:SetSize(230, 230)
@@ -47,7 +47,7 @@ local function CreateSeparator(parent, anchorTo, offsetY)
     return sep
 end
 
--- Icône d'info avec tooltip image
+-- Create icon with menu image for help
 local function CreateInfoIconWithImage(parent, anchorTo, offsetX, offsetY)
     local icon = CreateFrame("Frame", nil, parent)
     icon:SetSize(14, 14)
@@ -62,7 +62,6 @@ local function CreateInfoIconWithImage(parent, anchorTo, offsetX, offsetY)
     icon:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
         GameTooltip:ClearLines()
-        -- Affiche l'image dans l'infobulle via une balise texture
         GameTooltip:AddLine("|T" .. IMAGE_PATH .. ":92:193|t")
         GameTooltip:Show()
     end)
@@ -75,7 +74,7 @@ end
 
 -- Checkbox to disable all addon sounds (global)
 local disableSoundCheckbox = CreateFrame("CheckButton", nil, content, "UICheckButtonTemplate")
-disableSoundCheckbox:SetPoint("TOPLEFT", configurationDesc, "BOTTOMLEFT", 0, -8)
+disableSoundCheckbox:SetPoint("TOPLEFT", configurationDesc, "BOTTOMLEFT", 0, -12)
 disableSoundCheckbox.text = disableSoundCheckbox:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
 disableSoundCheckbox.text:SetPoint("LEFT", disableSoundCheckbox, "RIGHT", 4, 0)
 disableSoundCheckbox.text:SetText("Désactiver les sons (je n'aime pas le fun)")
@@ -83,7 +82,54 @@ disableSoundCheckbox:SetScript("OnClick", function(self)
     PelicanUI_Settings.DisableSounds = self:GetChecked()
 end)
 
-local sep1 = CreateSeparator(content, disableSoundCheckbox, -12)
+-- Sound Channel
+local soundChannelLabel = content:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+soundChannelLabel:SetPoint("TOPLEFT", disableSoundCheckbox, "BOTTOMLEFT", 0, -10)
+soundChannelLabel:SetText("Canal sonore utilisé")
+
+local soundChannelHint = content:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+soundChannelHint:SetPoint("TOPLEFT", soundChannelLabel, "BOTTOMLEFT", 0, -6)
+soundChannelHint:SetWidth(520)
+soundChannelHint:SetJustifyH("LEFT")
+soundChannelHint:SetText("Le réglage de volume du canal sélectionné s’appliquera à tous les sons de l’add-on.")
+
+local soundsChannelDropdown = CreateFrame("Frame", "PelicanUISoundsChannelDropdown", content, "UIDropDownMenuTemplate")
+soundsChannelDropdown:SetPoint("TOPLEFT", soundChannelHint, "BOTTOMLEFT", 0, -8)
+
+local channelOptions = {
+    { label = "Principal", value = "Master" },
+    { label = "Musique", value = "Music" },
+    { label = "Effets", value = "SFX" },
+    { label = "Ambiance", value = "Ambience" },
+    { label = "Discussion", value = "Dialog" },
+}
+
+local function GetChannelLabelByValue(v)
+    for _, o in ipairs(channelOptions) do
+        if o.value == v then
+            return o.label
+        end
+    end
+    return channelOptions[1].label
+end
+
+UIDropDownMenu_SetWidth(soundsChannelDropdown, 180)
+UIDropDownMenu_Initialize(soundsChannelDropdown, function(self, level)
+    local current = PelicanUI_Settings.SoundsChannel or "Master"
+    for _, opt in ipairs(channelOptions) do
+        local info = UIDropDownMenu_CreateInfo()
+        info.text = opt.label
+        info.func = function()
+            PelicanUI_Settings.SoundsChannel = opt.value
+            UIDropDownMenu_SetText(soundsChannelDropdown, opt.label)
+        end
+        info.checked = (current == opt.value)
+        UIDropDownMenu_AddButton(info, level)
+    end
+end)
+UIDropDownMenu_SetText(soundsChannelDropdown, GetChannelLabelByValue(PelicanUI_Settings.SoundsChannel or "Master"))
+
+local sep1 = CreateSeparator(content, soundsChannelDropdown, -12)
 
 -- MODULE EMOTE
 local emoteHeader = content:CreateFontString(nil, "ARTWORK", "GameFontNormal")
@@ -141,7 +187,6 @@ pmDesc:SetJustifyH("LEFT")
 pmDesc:SetWidth(520)
 pmDesc:SetText("Ce module permet d’envoyer et de recevoir des mèmes animés à une personne ou à votre groupe ")
 
--- Ligne dédiée “via un menu contextuel” + icône image
 local pmContext = content:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
 pmContext:SetPoint("TOPLEFT", pmDesc, "BOTTOMLEFT", 0, -2)
 pmContext:SetText("via un menu contextuel (click droit sur le joueur)")
@@ -234,7 +279,7 @@ warningText:SetText("|cffff0000Attention|r : après l’activation ou la désact
 optionsFrame:SetScript("OnShow", function()
     -- Keep current saved values
     disableSoundCheckbox:SetChecked(PelicanUI_Settings.DisableSounds)
-
+    UIDropDownMenu_SetText(soundsChannelDropdown, GetChannelLabelByValue(PelicanUI_Settings.SoundsChannel or "Master"))
     emotesCheckbox:SetChecked(PelicanUI_Settings.EmotesEnabled)
     readyCheckCheckbox:SetChecked(PelicanUI_Settings.ReadyCheckEnabled)
     pelimemeCheckbox:SetChecked(PelicanUI_Settings.PelimemeEnabled)

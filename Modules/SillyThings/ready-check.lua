@@ -10,7 +10,7 @@ local function playSound(filePath)
         return
     end
     if not PelicanUI_Settings.DisableSounds then
-        PlaySoundFile(SOUND_BASE_PATH .. filePath, "Master")
+        PlaySoundFile(SOUND_BASE_PATH .. filePath, PelicanUI_Settings.SoundsChannel)
     end
 end
 
@@ -95,7 +95,7 @@ local function rcGoAnimation()
     end
     frame:SetSize(w, h)
 
-    playSound("murloc.mp3")
+    playSound("murloc.ogg")
 
     -- Fade in, tenue, fade out
     frame:SetAlpha(0)
@@ -193,7 +193,7 @@ function ReadyCheck:Initialize()
 
         elseif event == "READY_CHECK_FINISHED" then
             if lastEveryoneAnswered and not lastAllReady then
-                playSound("sad-noise.mp3")
+                playSound("sad-noise.ogg")
             end
 
             if f and f:IsShown() and not (f._goAg and f._goAg:IsPlaying()) then

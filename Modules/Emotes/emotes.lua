@@ -20,7 +20,9 @@ local emotes = {
     ["merde"] = { behaviour = "after", image = "poop.tga" },
     ["+1"] = { behaviour = "replace", image = "nek-pouce.tga" },
     ["ok"] = { behaviour = "replace", image = "nek-pouce.tga", wholeWord = true },
-    ["saucisse"] = { behaviour = "after", image = "sausage.tga" },
+    ["saucisse"] = { behaviour = "after", image = "sausage.tga", wholeWord = true },
+    ["so6"] = { behaviour = "replace", image = "sausage.tga", wholeWord = true },
+    ["fu*k"] = { behaviour = "replace", image = "gogo.tga", wholeWord = true },
 }
 
 -- Helper function to escape special characters in Lua patterns
@@ -38,7 +40,7 @@ local function replaceEmotesInText(text)
     for code, emote in pairs(emotes) do
         local emoteTag = getEmoteTag(emote)
 
-        -- Of wholeWord is defined, we replace only the full word with frontier
+        -- If wholeWord is defined, we replace only the full word with frontier
         local pattern
         if emote.wholeWord then
             pattern = "%f[%w](" .. escapePattern(code) .. ")%f[^%w]"

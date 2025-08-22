@@ -8,8 +8,8 @@ local SOUND_BASE_PATH = "Interface\\AddOns\\PelicansUI\\Medias\\sounds\\"
 
 local pelimemes = {
     ["jae"] = { desc = "Jae Hippie", image = "jae.png", animation = "simpleDisplay" },
-    ["molky"] = { desc = "Molky espiègle", image = "molky.png", animation = "rightSlide", sound = "tu-veut-voir-ma.mp3" },
-    ["nephlol"] = { desc = "Neph LOL", image = "nephlol.png", animation = "bounce", sound = "haha.wav" },
+    ["molky"] = { desc = "Molky espiègle", image = "molky.png", animation = "rightSlide", sound = "tu-veut-voir-ma.ogg" },
+    ["nephlol"] = { desc = "Neph LOL", image = "nephlol.png", animation = "bounce", sound = "haha.ogg" },
     ["gogo"] = { desc = "Gogo", image = "gogo.png", animation = "simpleDisplay" },
     ["gogorain"] = { desc = "Pluie de Gogo", image = "gogo.png", animation = "rain" },
     ["sausage"] = { desc = "Saucisse", image = "sausage.png", animation = "shake" },
@@ -26,7 +26,7 @@ local function playSound(filePath)
     end
 
     if not PelicanUI_Settings.DisablePelimemeSound then
-        PlaySoundFile(SOUND_BASE_PATH .. filePath, "Master")
+        PlaySoundFile(SOUND_BASE_PATH .. filePath, PelicanUI_Settings.SoundsChannel)
     end
 end
 

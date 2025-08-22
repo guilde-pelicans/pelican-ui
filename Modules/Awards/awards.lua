@@ -9,12 +9,12 @@ local AWARD_DISPLAY_SIZE = 450
 
 -- Awards configurations
 local awards = {
-    ["aggro"] = { desc = "Gros boule", image = "gros-boule.png", sound = "sad-noise.mp3" },
-    ["carpette"] = { desc = "Carpette", image = "carpette.png", sound = "sad-noise.mp3" },
-    ["looter"] = { desc = "Looter", image = "looter.png", sound = "celebration.mp3" },
-    ["rageux"] = { desc = "Rageux", image = "rageux.png", sound = "murloc.mp3" },
-    ["slacker"] = { desc = "Slacker", image = "slacker.png", sound = "sad-noise.mp3" },
-    ["carry"] = { desc = "Carry", image = "carry.png", sound = "celebration.mp3" },
+    ["aggro"] = { desc = "Gros boule", image = "gros-boule.png", sound = "sad-noise.ogg" },
+    ["carpette"] = { desc = "Carpette", image = "carpette.png", sound = "sad-noise.ogg" },
+    ["looter"] = { desc = "Looter", image = "looter.png", sound = "celebration.ogg" },
+    ["rageux"] = { desc = "Rageux", image = "rageux.png", sound = "murloc.ogg" },
+    ["slacker"] = { desc = "Slacker", image = "slacker.png", sound = "sad-noise.ogg" },
+    ["carry"] = { desc = "Carry", image = "carry.png", sound = "celebration.ogg" },
 }
 
 local function sanitizePseudo(str)
@@ -50,7 +50,6 @@ local function sanitizePseudo(str)
         ["ß"]="b",
     }
 
-    -- Appliquer les remplacements
     str = (str:gsub("[\192-\255][\128-\191]*", repl))
 
     return str
@@ -71,7 +70,7 @@ local function playSound(filePath)
     end
 
     if not PelicanUI_Settings.DisableSounds then
-        PlaySoundFile(SOUND_BASE_PATH .. filePath, "Master")
+        PlaySoundFile(SOUND_BASE_PATH .. filePath, PelicanUI_Settings.SoundsChannel)
     end
 end
 
@@ -111,7 +110,7 @@ local function handleAwardReception(sender, message)
 
     -- Play the associated sound
     if award.sound then
-        playSound("drum-roll.mp3")
+        playSound("drum-roll.ogg")
     end
 end
 

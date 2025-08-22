@@ -6,7 +6,8 @@ PelicanUI_Settings = PelicanUI_Settings or {
     AwardsEnabled = true,
     ReadyCheckEnabled = true,
     PelimemeMinDelay = 60,
-    DisableSounds = false
+    DisableSounds = false,
+    SoundsChannel = 'Master'
 }
 
 local mainFrame = CreateFrame("Frame")
